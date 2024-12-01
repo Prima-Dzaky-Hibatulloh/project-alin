@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solusi Persamaan Linear 3 Variabel</title>
+    <style>
+        body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #9face6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    animation: backgroundShift 10s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+    0% { background-color: #74ebd5; }
+    50% { background-color: #9face6; }
+    100% { background-color: #74ebd5; }
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 750px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: -1;
+}
+
+h1 {
+    text-align: center;
+    color: #3f51b5;
+    margin-bottom: 20px;
+    font-size: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+form div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+form div label {
+    margin-right: 10px;
+    color: #333;
+    font-weight: bold;
+}
+
+form div input {
+    width: 80px;
+    padding: 12px;
+    margin: 0 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: #e1f5fe;
+}
+
+form div input:focus {
+    border-color: #3f51b5;
+    box-shadow: 0 0 5px rgba(63, 81, 181, 0.5);
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button {
+    padding: 12px;
+    width: 48%;
+    border: none;
+    background-color: #3f51b5;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 16px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background-color: #303f9f;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+}
+
+button:focus {
+    outline: none;
+}
+
+#steps, #result {
+    margin-top: 30px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#steps:hover, #result:hover {
+    background-color: #e1f5fe;
+    transform: translateY(-2px);
+}
+
+h3 {
+    font-size: 20px;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: linear-gradient(45deg, #3f51b5, #303f9f);
+    color: white;
+    transition: background-color 0.3s;
+}
+
+td {
+    background-color: #f9f9f9;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+td:hover {
+    background-color: #e0f7fa;
+    transform: translateY(-1px);
+}
+
+p {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #666;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Solusi Persamaan Linear 3 Variabel</h1>
+        <form id="form">
+            <div>
+                <label for="a1">a1 (untuk x): </label><input type="number" id="a1" value="1">
+                <label for="b1">b1 (untuk y): </label><input type="number" id="b1" value="1">
+                <label for="c1">c1 (untuk z): </label><input type="number" id="c1" value="1">
+                <label for="result1">Hasil 1: </label><input type="number" id="result1" value="6">
+            </div>
+            <div>
+                <label for="a2">a2 (untuk x): </label><input type="number" id="a2" value="1">
+                <label for="b2">b2 (untuk y): </label><input type="number" id="b2" value="1">
+                <label for="c2">c2 (untuk z): </label><input type="number" id="c2" value="1">
+                <label for="result2">Hasil 2: </label><input type="number" id="result2" value="6">
+            </div>
+            <div>
+                <label for="a3">a3 (untuk x): </label><input type="number" id="a3" value="1">
+                <label for="b3">b3 (untuk y): </label><input type="number" id="b3" value="1">
+                <label for="c3">c3 (untuk z): </label><input type="number" id="c3" value="1">
+                <label for="result3">Hasil 3: </label><input type="number" id="result3" value="6">
+            </div>
+            <div class="buttons">
+                <button type="submit" id="calculate">Hitung</button>
+                <button type="reset">Reset</button>
+            </div>
+        </form>
+
+        <div id="steps"></div>
+        <div id="result"></div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.1.0/math.js"></script>
+    <script>
+        document.getElementById("form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let matrixA = [
+        [
+            parseFloat(document.getElementById("a1").value),
+            parseFloat(document.getElementById("b1").value),
+            parseFloat(document.getElementById("c1").value)
+        ],
+        [
+            parseFloat(document.getElementById("a2").value),
+            parseFloat(document.getElementById("b2").value),
+            parseFloat(document.getElementById("c2").value)
+        ],
+        [
+            parseFloat(document.getElementById("a3").value),
+            parseFloat(document.getElementById("b3").value),
+            parseFloat(document.getElementById("c3").value)
+        ]
+    ];
+
+    let results = [
+        parseFloat(document.getElementById("result1").value),
+        parseFloat(document.getElementById("result2").value),
+        parseFloat(document.getElementById("result3").value)
+    ];
+
+    try {
+        let solution = math.lusolve(matrixA, results);
+        
+        let stepsHtml = `
+            <h3>Langkah-Langkah Penyelesaian:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Persamaan</th>
+                        <th>Langkah-langkah</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Persamaan 1: ${matrixA[0][0]}x + ${matrixA[0][1]}y + ${matrixA[0][2]}z = ${results[0]}</td>
+                        <td>
+                            1. Persamaan pertama: <strong>${matrixA[0][0]}x + ${matrixA[0][1]}y + ${matrixA[0][2]}z = ${results[0]}</strong><br>
+                            2. Jika kita ingin menyelesaikan untuk z, kita perlu memanipulasi persamaan:<br>
+                            &nbsp;&nbsp;&nbsp;${matrixA[0][2]}z = ${results[0]} - (${matrixA[0][0]}x + ${matrixA[0][1]}y)<br>
+                            &nbsp;&nbsp;&nbsp;z = ( ${results[0]} - ${matrixA[0][0]}x - ${matrixA[0][1]}y ) / ${matrixA[0][2]}<br>
+                            3. Berarti z dapat dinyatakan dalam fungsi dari x dan y.<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Persamaan 2: ${matrixA[1][0]}x + ${matrixA[1][1]}y + ${matrixA[1][2]}z = ${results[1]}</td>
+                        <td>
+                            1. Persamaan kedua: <strong>${matrixA[1][0]}x + ${matrixA[1][1]}y + ${matrixA[1][2]}z = ${results[1]}</strong><br>
+                            2. Kita menggunakan nilai z yang telah kita peroleh dari langkah sebelumnya:<br>
+                            &nbsp;&nbsp;&nbsp;${matrixA[1][0]}x + ${matrixA[1][1]}y + ${matrixA[1][2]} * (( ${results[0]} - ${matrixA[0][0]}x - ${matrixA[0][1]}y ) / ${matrixA[0][2]}) = ${results[1]}<br>
+                            3. Sederhanakan persamaan ini untuk y:<br>
+                            &nbsp;&nbsp;&nbsp;${matrixA[1][0]}x + ${matrixA[1][1]}y + (${matrixA[1][2]} * ${results[0]} / ${matrixA[0][2]} ) - (${matrixA[1][2]} * ${matrixA[0][0]} / ${matrixA[0][2]} ) x - (${matrixA[1][2]} * ${matrixA[0][1]} / ${matrixA[0][2]} ) y = ${results[1]}<br>
+                            &nbsp;&nbsp;&nbsp;Selesaikan untuk y setelah menyusun ulang.<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Persamaan 3: ${matrixA[2][0]}x + ${matrixA[2][1]}y + ${matrixA[2][2]}z = ${results[2]}</td>
+                        <td>
+                            1. Persamaan ketiga: <strong>${matrixA[2][0]}x + ${matrixA[2][1]}y + ${matrixA[2][2]}z = ${results[2]}</strong><br>
+                            2. Sekarang, kita substitusi nilai z dari persamaan pertama yang sudah ditentukan: <br>
+                            &nbsp;&nbsp;&nbsp;${matrixA[2][0]}x + ${matrixA[2][1]}y + ${matrixA[2][2]} * (( ${results[0]} - ${matrixA[0][0]}x - ${matrixA[0][1]}y ) / ${matrixA[0][2]}) = ${results[2]}<br>
+                            3. Sederhanakan persamaan ini:<br>
+                            &nbsp;&nbsp;&nbsp;${matrixA[2][0]}x + ${matrixA[2][1]}y + (${matrixA[2][2]} * ${results[0]} / ${matrixA[0][2]}) - (${matrixA[2][2]} * ${matrixA[0][0]} / ${matrixA[0][2]})x - (${matrixA[2][2]} * ${matrixA[0][1]} / ${matrixA[0][2]})y = ${results[2]}<br>
+                            4. Susun ulang persamaan untuk mendapatkan bentuk yang lebih sederhana:<br>
+                            &nbsp;&nbsp;&nbsp;(${matrixA[2][0]} - (${matrixA[2][2]} * ${matrixA[0][0]} / ${matrixA[0][2]}))x + (${matrixA[2][1]} - (${matrixA[2][2]} * ${matrixA[0][1]} / ${matrixA[0][2]}))y = ${results[2]} - (${matrixA[2][2]} * ${results[0]} / ${matrixA[0][2]})<br>
+                            5. Dengan langkah ini, kita mendapatkan sistem dua persamaan dengan dua variabel (x dan y) yang dapat diselesaikan.<br>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        `;
+
+        document.getElementById("steps").innerHTML = stepsHtml;
+        
+        document.getElementById("result").innerHTML = `
+            <h3>Hasil Penyelesaian:</h3>
+            <p><strong>x = ${solution[0][0].toFixed(2)}</strong> (nilai x yang ditemukan dari sistem persamaan)</p>
+            <p><strong>y = ${solution[1][0].toFixed(2)}</strong> (nilai y yang ditemukan dari sistem persamaan)</p>
+            <p><strong>z = ${solution[2][0].toFixed(2)}</strong> (nilai z yang ditemukan dari sistem persamaan)</p>
+        `;
+
+        // Tambahkan verifikasi solusi
+        let verificationHtml = `
+            <h3>Verifikasi Hasil:</h3>
+            <p>Penting untuk memverifikasi hasil dengan memasukkan nilai x, y, dan z ke dalam masing-masing persamaan awal:</p>
+            <ol>
+                <li>Untuk Persamaan 1: 
+                    <strong>${matrixA[0][0]}(${solution[0][0].toFixed(2)}) + ${matrixA[0][1]}(${solution[1][0].toFixed(2)}) + ${matrixA[0][2]}(${solution[2][0].toFixed(2)}) = ${results[0]}</strong>
+                </li>
+                <li>Untuk Persamaan 2: 
+                    <strong>${matrixA[1][0]}(${solution[0][0].toFixed(2)}) + ${matrixA[1][1]}(${solution[1][0].toFixed(2)}) + ${matrixA[1][2]}(${solution[2][0].toFixed(2)}) = ${results[1]}</strong>
+                </li>
+                <li>Untuk Persamaan 3: 
+                    <strong>${matrixA[2][0]}(${solution[0][0].toFixed(2)}) + ${matrixA[2][1]}(${solution[1][0].toFixed(2)}) + ${matrixA[2][2]}(${solution[2][0].toFixed(2)}) = ${results[2]}</strong>
+                    </li>
+                </ol>
+                <p>Dengan memasukkan nilai-nilai tersebut, kita memastikan bahwa solusi yang diperoleh memenuhi semua persamaan.</p>
+            `;
+    
+            document.getElementById("result").innerHTML += verificationHtml;
+    
+        } catch (error) {
+            document.getElementById("steps").innerHTML = `<p>Terjadi kesalahan dalam perhitungan, periksa input anda.</p>`;
+            document.getElementById("result").innerHTML = '';
+        }
+    });
+    </script>
+ 
+</body>
+</html>
